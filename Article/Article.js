@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+  title: 'Yay I can add more articles!',
+  date: 'October 2nd, 2019',
+  firstParagraph: 'Card content that is taller than the maximum card height is truncated and does not scroll, but can be displayed by expanding the height of a card. A card can expand beyond the maximum height of the screen, in which case the card scrolls within the screen.',
+
+  secondParagraph: 'When traversing through focus points on a card, visit each focused element before moving to the next card. For users that navigate solely using focus traversal (using a D-pad and keyboard), cards should have either a primary action or open a new screen containing primary and supplemental actions.',
+
+  thirdParagraph: 'The card container is the only required element in a card. All other elements shown here are optional. Card layouts can vary to support the types of content they contain. The following elements are commonly found among that variety.'
   }
 ];
 
@@ -112,3 +121,45 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const articles = document.querySelector('.articles');
+
+data.forEach(item => {
+  articles.appendChild(createArticle(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph))
+})
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const paragraphsOne = document.createElement('p');
+  const paragraphsTwo = document.createElement('p');
+  const paragraphsThree = document.createElement('p');
+  const spanButton = document.createElement('span');
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(paragraphsOne);
+  article.appendChild(paragraphsTwo);
+  article.appendChild(paragraphsThree);
+  article.appendChild(spanButton);
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  spanButton.classList.add('expandButton');
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  paragraphsOne.textContent = firstParagraph;
+  paragraphsTwo.textContent = secondParagraph;
+  paragraphsThree.textContent = thirdParagraph;
+  spanButton.textContent = "Click Me!";
+
+
+  spanButton.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+    article.style.transition = 'all 0.7s';
+  });
+
+  return article;
+}
