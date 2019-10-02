@@ -158,6 +158,7 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
 
   spanButton.addEventListener('click', () => {
     article.classList.toggle('article-open');
+    article.style.transition = 'all 0.7s';
   });
 
   return article;

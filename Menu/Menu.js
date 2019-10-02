@@ -54,6 +54,7 @@ function createMenu(item) {
 
   menuButton.addEventListener('click', () => {
     menu.classList.toggle('menu--open');
+    TweenMax.to(menu, 1.5, { x: -100, scale:0.6, y: -195 });
   })
 
   return menu;
